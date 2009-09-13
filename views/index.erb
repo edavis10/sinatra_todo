@@ -6,10 +6,10 @@
 <ul>
 <% @todos.each do |todo| %>
 <li>
-  <a href="/priority/<%= todo.priority %>"><%= todo.priority %></a>
+  <%= link_to_priority todo.priority %>
   <%= todo.content %>
   <% todo.tags.each do |tag| %>
-  <a href="/tagged/<%= tag %>">#<%= tag %></a>
+  <%= link_to_tag tag %>
   <% end %>
 </li>
 <% end %>

@@ -47,7 +47,24 @@ class Todo
     end
     todos
   end
-  
+
+  def self.priorities
+    priorities = []
+    read_from_disk.each do |line|
+      line =~ PriorityContentRegex
+      priorities << $1.strip
+    end
+    priorities.uniq.sort
+  end
+
+  def self.tags
+    tags = []
+    read_from_disk.each do |line|
+      tags << Todo.find_tags(line.chomp)
+    end
+    tags.flatten.uniq.sort
+  end
+
   private
 
   def self.find_tags(line)
