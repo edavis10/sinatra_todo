@@ -106,6 +106,8 @@ body {
 	font-size: 90%;
 }
 
+#menu-page p {margin: 0 0.3em; }
+
 #menu-page h3 {
 	font-size: 75%;
 	text-transform: uppercase;
@@ -114,9 +116,9 @@ body {
 	font-weight: normal;
 	letter-spacing: 0.15em;
 }
-
+#menu-page a { padding: 2px; }
 #menu-page a:link, #menu-page a:visited { color: #888; }
-#menu-page a:hover { color: #5b8fbe; }
+#menu-page a:hover { color: white; background: #5b8fbe;}
 
 #wrapper-footer {
 	margin-top: 1em;

@@ -36,17 +36,12 @@
 <div id="wrapper-content">
 	<div id="wrapper-menu-page">
 	<div id="menu-page">
-		<h3>Priorities</h3>
-		<ul>
-          <% all_priorities.each do |priority| %>
-          <li><%= link_to_priority priority %></li>
-          <% end %>
-		</ul>
-		
 		<h3>Tags</h3>
+        <p>
         <% all_tags.each do |tag| %>
         <%= link_to_tag tag %> 
         <% end %>
+        </p>
 	</div><!--menu-page-->
 	</div><!--wrapper-menu-page-->
 	
