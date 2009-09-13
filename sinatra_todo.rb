@@ -5,6 +5,11 @@ require 'lib/todo'
 
 TODO_FILE = ENV['TODO_FILE'] || ARGV[0] || '/home/edavis/doc/T/Todo/Todo.todo'
 
+# Stupid simple auth
+use Rack::Auth::Basic do |username, password|
+  username == 'admin' && password == 'todos'
+end
+
 helpers do
   def all_priorities
     Todo.priorities
