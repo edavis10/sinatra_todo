@@ -11,14 +11,12 @@
 
 <div id="menu-top">
 	<ul>
-		<li><a href="#" title="Downloads"><span>Downloads</span></a></li>
-		<li><a href="#" title="Gallery"><span>Gallery</span></a></li>
-		<li><a href="#" title="Links"><span>Links</span></a></li>
-		<li><a href="#" title="Links"><span>Changed</span></a></li>
-		<li><a href="#" title="Links"><span>Links</span></a></li>
-        <li><a href="#" title="Links"><span>Links</span></a></li>
-		<li><a href="#" title="Links"><span>Links</span></a></li>
-		<li><a href="#" title="Links"><span>Links</span></a></li>
+		<li><a href="/" title="Home"><span>Home</span></a></li>
+        <% all_priorities.each do |priority| %>
+        <li>
+          <a href='/priority/<%= priority %>'><span>Priority <%= priority %></span></a>
+        </li>
+        <% end %>
 	</ul>
 </div><!--menu-top-->
 
