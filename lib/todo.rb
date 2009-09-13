@@ -1,10 +1,16 @@
 class Todo
+  PriorityContentRegex = /^([\S.]) ([^#]*)/
+
   attr_accessor :content
   attr_accessor :priority
   attr_accessor :tags
 
   def active?
     !self.priority.match(/[0X]/)
+  end
+
+  def has_tag?(tag)
+    tags.include?(tag.downcase)
   end
   
   def self.all
@@ -33,13 +39,30 @@ class Todo
     todos
   end
   
+  def self.find_by_tag(tag)
+    todos = []
+    read_from_disk.each do |line|
+      todo = new_from_file_format(line)
+      todos << todo if todo.has_tag?(tag)
+    end
+    todos
+  end
+  
   private
 
+  def self.find_tags(line)
+    line.
+      scan(/#\w+/). # Hash words
+      collect {|w| w.sub(/#/,'').downcase }. # Remove hash (#)
+      uniq
+  end
+  
   def self.new_from_file_format(line)
     todo = Todo.new
-    todo.content = line.chomp
-    todo.priority = line[0,1]
-    todo.tags = '' # TODO
+    line =~ PriorityContentRegex
+    todo.priority = $1.strip
+    todo.content = $2.strip
+    todo.tags = Todo.find_tags(line.chomp)
     todo
   end
 

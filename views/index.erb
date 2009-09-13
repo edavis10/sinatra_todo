@@ -5,7 +5,13 @@
 <% else %>
 <ul>
 <% @todos.each do |todo| %>
-<li><%= todo.content %></li>
+<li>
+  <a href="/priority/<%= todo.priority %>"><%= todo.priority %></a>
+  <%= todo.content %>
+  <% todo.tags.each do |tag| %>
+  <a href="/tagged/<%= tag %>">#<%= tag %></a>
+  <% end %>
+</li>
 <% end %>
 </ul>
 <% end %>  
