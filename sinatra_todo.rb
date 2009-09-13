@@ -8,6 +8,10 @@ get '/' do
   erb :index
 end
 
+get '/priority/:priority' do
+  @todos = Todo.find_by_priority(params[:priority])
+  erb :index
+end
+
 # TODO: all
-# TODO: by priority
 # TODO: by tag

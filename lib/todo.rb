@@ -24,6 +24,15 @@ class Todo
     todos
   end
 
+  def self.find_by_priority(priority)
+    todos = []
+    read_from_disk.each do |line|
+      todo = new_from_file_format(line)
+      todos << todo if priority == todo.priority
+    end
+    todos
+  end
+  
   private
 
   def self.new_from_file_format(line)
