@@ -1,6 +1,13 @@
 require 'rubygems'
 require 'sinatra'
 
+require 'lib/todo'
+
 get '/' do
-  "Hi"
+  @todos = Todo.active
+  erb :index
 end
+
+# TODO: all
+# TODO: by priority
+# TODO: by tag

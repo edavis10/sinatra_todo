@@ -1,0 +1,11 @@
+<h1>Todos</h1>
+
+<% if @todos.empty? %>
+<p>No todos found.</p>
+<% else %>
+<ul>
+<% @todos.each do |todo| %>
+<li><%= todo.content %></li>
+<% end %>
+</ul>
+<% end %>  
