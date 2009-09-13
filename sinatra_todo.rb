@@ -3,6 +3,8 @@ require 'sinatra'
 
 require 'lib/todo'
 
+TODO_FILE = ENV['TODO_FILE'] || ARGV[0] || '/home/edavis/doc/T/Todo/Todo.todo'
+
 helpers do
   def all_priorities
     Todo.priorities

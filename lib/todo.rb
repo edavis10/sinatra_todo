@@ -84,6 +84,6 @@ class Todo
   end
 
   def self.read_from_disk
-    @file_content = File.readlines("/home/edavis/doc/T/Todo/Todo.todo")
+    @file_content = File.readlines(TODO_FILE)
   end
 end
