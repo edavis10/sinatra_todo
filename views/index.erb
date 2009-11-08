@@ -3,7 +3,7 @@
 <% if @todos.empty? %>
 <p>No todos found.</p>
 <% else %>
-<ul>
+<ol>
 <% @todos.each do |todo| %>
 <li>
   <%= link_to_priority todo.priority %>
@@ -13,5 +13,5 @@
   <% end %>
 </li>
 <% end %>
-</ul>
+</ol>
 <% end %>  
