@@ -1,0 +1,41 @@
+= Sinatra Todo
+
+Sinatra Todo is a web frontend to Billy Lamberta's todo-list-mode[http://www.lamberta.org/blog/todo-list-mode/].  It lets you easily group tasks by priority or tags.
+
+== Setup
+
+1. You will need a text file formatted in the format for todo-list-mode (See below)
+2. Clone this repository: git://github.com/edavis10/sinatra_todo.git
+3. Start the application by using rackup: `rackup path/to/your/todo/list.txt`
+4. Browse to http://localhost:9292
+5. Login with the user account: admin/todos
+6. Bask in the glory of a webified todo list
+
+== Hacking
+
+=== Changing the port it runs on
+
+Use the +-p ####+ option with rackup.  I like to use port 4567 because that's Sinatra's standard port.
+
+=== Changing the account username and password
+
+The account is hardcoded at the moment just to keep prying eyes out.  If you want to use a different account (or remove it altogether), edit the +sinatra_todo.rb+ file.
+
+=== Changing the path to the todo file
+
+Sinatra Todo checks for a todo file in three places:
+
+1. The environment variables TODO_FILE (e.g. `TODO_FILE=here/todo.txt rackup`)
+2. The second argument to rackup (e.g. `rackup my/todo.txt`)
+3. A hardcoded string, to my todo file at the moment.
+
+== todo-list format
+
+The todo-list format is very simple:
+
+* First character is a number or letter, which I use for the priority (e.g. 1, 2)
+* A space
+* Bunch of text for the task
+* (optional) the task text can have hashtag style comments which are converted into tags (e.g. +#ruby+, +#home+)
+
+
