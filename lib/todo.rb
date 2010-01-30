@@ -52,7 +52,7 @@ class Todo
     priorities = []
     read_from_disk.each do |line|
       line =~ PriorityContentRegex
-      priorities << $1.strip
+      priorities << $1.strip if $1
     end
     priorities.uniq.sort
   end
@@ -77,8 +77,8 @@ class Todo
   def self.new_from_file_format(line)
     todo = Todo.new
     line =~ PriorityContentRegex
-    todo.priority = $1.strip
-    todo.content = $2.strip
+    todo.priority = $1.strip if $1
+    todo.content = $2.strip if $2
     todo.tags = Todo.find_tags(line.chomp)
     todo
   end
