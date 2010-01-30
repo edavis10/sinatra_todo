@@ -15,11 +15,11 @@ Sinatra Todo is a web frontend to Billy Lamberta's todo-list-mode[http://www.lam
 
 === Changing the port it runs on
 
-Use the +-p ####+ option with rackup.  I like to use port 4567 because that's Sinatra's standard port.
+Use the '-p ####' option with rackup.  I like to use port 4567 because that's Sinatra's standard port.
 
 === Changing the account username and password
 
-The account is hardcoded at the moment just to keep prying eyes out.  If you want to use a different account (or remove it altogether), edit the +sinatra_todo.rb+ file.
+The account is hardcoded at the moment just to keep prying eyes out.  If you want to use a different account (or remove it altogether), edit the 'sinatra_todo.rb' file.
 
 === Changing the path to the todo file
 
@@ -36,6 +36,6 @@ The todo-list format is very simple:
 * First character is a number or letter, which I use for the priority (e.g. 1, 2)
 * A space
 * Bunch of text for the task
-* (optional) the task text can have hashtag style comments which are converted into tags (e.g. +#ruby+, +#home+)
+* (optional) the task text can have hashtag style comments which are converted into tags (e.g. #ruby, #home)
 
 
