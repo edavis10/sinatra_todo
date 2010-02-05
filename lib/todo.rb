@@ -6,7 +6,11 @@ class Todo
   attr_accessor :tags
 
   def active?
-    !self.priority.match(/[0X]/)
+	  if self.priority
+      ! self.priority.match(/C/)
+    else 
+      return false
+    end
   end
 
   def has_tag?(tag)
