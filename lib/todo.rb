@@ -1,5 +1,6 @@
 class Todo
   PriorityContentRegex = /^([\S.]) ([^#]*)/
+  CompleteProirityRegex = /[0XC]/
 
   attr_accessor :content
   attr_accessor :priority
@@ -7,7 +8,7 @@ class Todo
 
   def active?
 	  if self.priority
-      ! self.priority.match(/C/)
+      ! self.priority.match(CompleteProirityRegex)
     else 
       return false
     end
