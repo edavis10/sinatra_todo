@@ -7,11 +7,7 @@ class Todo
   attr_accessor :tags
 
   def active?
-	  if self.priority
-      ! self.priority.match(CompleteProirityRegex)
-    else 
-      return false
-    end
+    self.priority && !self.priority.match(CompleteProirityRegex)
   end
 
   def has_tag?(tag)
