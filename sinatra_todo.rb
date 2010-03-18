@@ -47,12 +47,13 @@ get '/tagged/:tag' do
   @todos = Todo.find_by_tag(params[:tag])
   erb :index
 end
+
 get '/add' do
-	if params.empty?
-  	erb :add
-	else
-		redirect '/', 303
-	end
+  if params.empty?
+    erb :add
+  else
+    redirect '/', 303
+  end
 end
 
 post '/add' do
