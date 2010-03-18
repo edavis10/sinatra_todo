@@ -1,0 +1,9 @@
+<h1>Edit Todo</h1>
+
+<form name="input" action="/update" method="post">
+  <input type="hidden" name="_method" value="put" />
+  <input type="hidden" name="line" value="<%= h @todo.line_number %>" />
+  TODO:
+  <input type="text" name="todo" value="<%= h @todo.raw_line %>"/>
+  <input type="submit" value="Edit" />
+</form>

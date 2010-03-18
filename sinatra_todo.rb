@@ -11,6 +11,9 @@ use Rack::Auth::Basic do |username, password|
 end
 
 helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+  
   def all_priorities
     Todo.priorities
   end
@@ -25,6 +28,10 @@ helpers do
 
   def link_to_tag(tag)
     "<a href='/tagged/#{tag}'>##{tag}</a>"
+  end
+
+  def edit_link(todo)
+    "<a class='small' href='/edit/#{todo.line_number}'>(edit)</a>"
   end
 end
 
@@ -61,3 +68,13 @@ post '/add' do
   redirect '/', 303
 end
 
+get '/edit/:line' do
+  @todo = Todo.find(params[:line])
+  erb :edit
+end
+
+put '/update' do
+  @todo = Todo.find(params[:line])
+  @todo.update(params[:todo])
+  redirect '/', 302
+end

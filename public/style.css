@@ -138,3 +138,4 @@ h3 { font-size: 100%; }
 
 a:link, a:visited { color: #5b8fbe; text-decoration: none; }
 a:hover{ color: #666; text-decoration: none; }
+.small {font-size: small; }
