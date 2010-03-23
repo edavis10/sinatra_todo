@@ -42,21 +42,25 @@ end
 
 get '/all' do
   @todos = Todo.all
+  @page_title = '- All'
   erb :index
 end
 
 get '/priority/:priority' do
   @todos = Todo.find_by_priority(params[:priority])
+  @page_title = "- Priority: #{params[:priority]}"
   erb :index
 end
 
 get '/tagged/:tag' do
   @todos = Todo.find_by_tag(params[:tag])
+  @page_title = "- Tagged: #{params[:tag]}"
   erb :index
 end
 
 get '/add' do
   if params.empty?
+    @page_title = "- Add New Todo"
     erb :add
   else
     redirect '/', 303
@@ -70,6 +74,7 @@ end
 
 get '/edit/:line' do
   @todo = Todo.find(params[:line])
+  @page_title = "- Edit - #{@todo.content}"
   erb :edit
 end
 
