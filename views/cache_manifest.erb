@@ -1,0 +1,20 @@
+CACHE MANIFEST
+NETWORK:
+/add
+/tagged/
+/edit/
+/update
+CACHE:
+/style.css
+/
+/all
+<% all_priorities.each do |priority| %>
+/priority/<%= priority %>
+<% end %>
+<% @images.each do |image_location| %>
+<%= image_location %>
+<% end %>
+FALLBACK:
+/ /offline
+
+# rev 9

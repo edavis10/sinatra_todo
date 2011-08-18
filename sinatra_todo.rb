@@ -83,3 +83,14 @@ put '/update' do
   @todo.update(params[:todo])
   redirect '/', 302
 end
+
+get '/cache.manifest' do
+  content_type 'text/cache-manifest'
+  @images = Dir['public/images/**'].collect {|name| name.sub(/^public/,'') }
+
+  erb :cache_manifest, :layout => false
+end
+
+get '/offline' do
+  'Resource is only available when online'
+end
