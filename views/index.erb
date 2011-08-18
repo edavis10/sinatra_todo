@@ -4,14 +4,12 @@
       <ul data-role="listview" data-filter="true">
         <% @todos.each do |todo| %>
           <li>
-            <a href="/edit/<%= todo.line_number %>" data-ajax="false">
+            <a href="<%= edit_url(todo) %>" data-ajax="false">
               <h3><%= todo.content %></h3>
 
               <span class="ui-li-count">Priority: <%= todo.priority %></span>
 
-              <p>Tagged: <% todo.tags.each do |tag| %>
-                  <%= tag %>
-                <% end %></p>
+              <%= tag_list(todo) %>
             </a>
           </li>
         <% end %>

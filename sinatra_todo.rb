@@ -30,10 +30,17 @@ helpers do
     "<a href='/tagged/#{tag}'>##{tag}</a>"
   end
 
-  def edit_link(todo, &block)
-    return "<a href='/edit/#{todo.line_number}'>" +
-      block.call + "</a>"
-    
+  def edit_url(todo)
+    "/edit/#{todo.line_number}"
+  end
+
+  def tag_list(todo)
+    unless todo.tags.empty?
+      return "<p>Tagged: " + todo.tags.join(", ") + "</p>"
+    else
+      ""
+    end
+      
   end
 end
 
