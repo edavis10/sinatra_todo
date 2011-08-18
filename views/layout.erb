@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-	<title>Emacs Todos</title> 
+	<title>Todos <%= h(@page_title) %></title> 
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
@@ -11,7 +11,21 @@
 </head> 
 
 <body> 
-  <%= yield %>
+  <div data-role="page" id="main">
+    <div data-role="header">
+      <h1>Todos - <%= h(@page_title) %></h1>
+      <a href="#new" data-icon="add" class="ui-btn-right">New</a>
+    </div>
+
+    <div data-role="content">
+      <%= yield %>
+    </div>
+    
+    <div data-role="footer">
+    </div>
+
+  </div>
+
   <div data-role="page" id="new">
     <div data-role="header"><h1>Add a Todo</h1></div>
 

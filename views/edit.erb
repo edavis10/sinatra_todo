@@ -1,12 +1,4 @@
-<div data-role="page" id="main">
-  <div data-role="header">
-    <h1>Edit Todo</h1>
-    <a href="#new" data-icon="add" class="ui-btn-right">New</a>
-  </div>
-
   <div data-role="content">
-    
-
     <form name="input" action="/update" method="post"  data-ajax="false">
       <input type="hidden" name="_method" value="put" />
       <input type="hidden" name="line" value="<%= h @todo.line_number %>" />
@@ -17,7 +9,4 @@
 
   </div>
 
-  <div data-role="footer">
-  </div>
-</div>  
 
