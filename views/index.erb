@@ -1,19 +1,17 @@
     <% if @todos.empty? %>
       <p>No todos found.</p>
     <% else %>
-      <ul data-role="listview">
+      <ul data-role="listview" data-filter="true">
         <% @todos.each do |todo| %>
           <li>
             <a href="/edit/<%= todo.line_number %>" data-ajax="false">
               <h3><%= todo.content %></h3>
 
-              <p>Priority: <%= todo.priority %></p>
+              <span class="ui-li-count">Priority: <%= todo.priority %></span>
 
-              <p>Tags: 
-                <% todo.tags.each do |tag| %>
+              <p>Tagged: <% todo.tags.each do |tag| %>
                   <%= tag %>
-                <% end %>
-              </p>
+                <% end %></p>
             </a>
           </li>
         <% end %>
