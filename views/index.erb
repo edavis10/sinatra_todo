@@ -4,7 +4,7 @@
       <ul data-role="listview" data-filter="true">
         <% @todos.each do |todo| %>
           <li>
-            <a href="<%= edit_url(todo) %>" data-ajax="false">
+            <a href="<%= edit_url(todo) %>">
               <h3><%= todo.content %></h3>
 
               <span class="ui-li-count">Priority: <%= todo.priority %></span>
