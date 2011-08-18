@@ -1,60 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<title>Emacs Todos <%= h(@page_title) %></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="author" content="http://www.littlestreamsoftware.com" />
-	<link rel="stylesheet" type="text/css" href="/style.css" />
-</head>
-
-<body>
-
-<div id="menu-top">
-	<ul>
-		<li><a href="/" title="Active"><span>Active</span></a></li>
-		<li><a href="/all" title="All"><span>All</span></a></li>
-        <% all_priorities.each do |priority| %>
-        <li>
-          <a href='/priority/<%= priority %>'><span>Priority <%= priority %></span></a>
-        </li>
-        <% end %>
-				<li><a href="/add" title="Add"><span>Add</span></a></li>
-	</ul>
-</div><!--menu-top-->
-
-<!-- mejobloggs: sorry about all these wrappers. It is a lot of structural markup .
-		If you know how to do this with less structural markup, contact my throught my
-		OWD user page: http://www.openwebdesign.org/userinfo.phtml?user=mejobloggs -->
-<div id="wrapper-header">
-<div id="header">
-<div id="wrapper-header2">
-<div id="wrapper-header3">
-	<h1>&nbsp;</h1>
-</div><!--wrapper-header3-->
-</div><!--wrapper-header2-->
-</div><!--header-->
-</div><!--wrapper-header-->
-
-<div id="wrapper-content">
-	<div id="wrapper-menu-page">
-	<div id="menu-page">
-		<h3>Tags</h3>
-        <p>
-        <% all_tags.each do |tag| %>
-        <%= link_to_tag tag %> 
-        <% end %>
-        </p>
-	</div><!--menu-page-->
-	</div><!--wrapper-menu-page-->
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Emacs Todos</title> 
 	
-	<div id="content">
-      <%= yield %>
-  </div><!--content-->
-</div><!--wrapper-content-->
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-<div id="wrapper-footer">
-  Developed and Copyright <a href="http://www.littlestreamsoftware.com">Eric Davis, Little Stream Software</a>.  Design by <a href="http://www.opensourcetemplates.org/templates/preview/1247149577/">Studio7designs.com</a>
-</div><!--wrapper-footer-->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js"></script>
+</head> 
 
+<body> 
+  <%= yield %>
+  <div data-role="page" id="new">
+    <div data-role="header"><h1>Add a Todo</h1></div>
+
+    <div data-role="content">
+      <form name="input" action="add" method="post">
+        <label for="todo">TODO item:</label>
+        <input type="text" id="todo" name="todo" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+
+  </div>
 </body>
-</html>
+</html

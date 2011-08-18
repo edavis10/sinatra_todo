@@ -30,8 +30,10 @@ helpers do
     "<a href='/tagged/#{tag}'>##{tag}</a>"
   end
 
-  def edit_link(todo)
-    "<a class='small' href='/edit/#{todo.line_number}'>(edit)</a>"
+  def edit_link(todo, &block)
+    return "<a href='/edit/#{todo.line_number}'>" +
+      block.call + "</a>"
+    
   end
 end
 

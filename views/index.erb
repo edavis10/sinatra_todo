@@ -1,18 +1,35 @@
-<h1>Todos</h1>
+<div data-role="page" id="main">
+  <div data-role="header">
+    <h1>Todos</h1>
+    <a href="#new" data-icon="add" class="ui-btn-right">New</a>
+  </div>
 
-<% if @todos.empty? %>
-<p>No todos found.</p>
-<% else %>
-<ol>
-<% @todos.each do |todo| %>
-<li>
-  <%= link_to_priority todo.priority %>
-  <%= todo.content %>
-  <% todo.tags.each do |tag| %>
-  <%= link_to_tag tag %>
-  <% end %>
-  <%= edit_link(todo) %>
-</li>
-<% end %>
-</ol>
-<% end %>  
+  <div data-role="content">
+    <% if @todos.empty? %>
+      <p>No todos found.</p>
+    <% else %>
+      <ul data-role="listview">
+        <% @todos.each do |todo| %>
+          <li>
+            <a href="/edit/<%= todo.line_number %>" data-ajax="false">
+              <h3><%= todo.content %></h3>
+
+              <p>Priority: <%= todo.priority %></p>
+
+              <p>Tags: 
+                <% todo.tags.each do |tag| %>
+                  <%= tag %>
+                <% end %>
+              </p>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>  
+
+  </div>
+
+  <div data-role="footer">
+  </div>
+</div>  
+
