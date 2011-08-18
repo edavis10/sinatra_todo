@@ -14,29 +14,23 @@
   <div data-role="page" id="main">
     <div data-role="header">
       <h1>Todos - <%= h(@page_title) %></h1>
-      <a href="#new" data-icon="add" class="ui-btn-right">New</a>
+      <a href="/add" data-icon="add" class="ui-btn-right">New</a>
     </div>
 
     <div data-role="content">
       <%= yield %>
     </div>
     
-    <div data-role="footer">
+    <div data-role="footer" class="ui-bar">
+      <div data-role="controlgroup" data-type="horizontal">
+      Priority
+      <a href="/" title="Active"><span>Active</span></a>
+		  <a href="/all" title="All"><span>All</span></a>
+      <% all_priorities.each do |priority| %>
+        <a href='/priority/<%= priority %>'><span>Priority <%= priority %></span></a>
+      <% end %>
+      </div>
     </div>
-
-  </div>
-
-  <div data-role="page" id="new">
-    <div data-role="header"><h1>Add a Todo</h1></div>
-
-    <div data-role="content">
-      <form name="input" action="add" method="post">
-        <label for="todo">TODO item:</label>
-        <input type="text" id="todo" name="todo" />
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-
   </div>
 </body>
 </html
