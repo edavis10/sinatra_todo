@@ -81,6 +81,10 @@ class Todo
     tags.flatten.uniq.sort
   end
 
+  def self.last_modified
+    File.mtime(TODO_FILE)
+  end
+
   private
 
   def self.find_tags(line)

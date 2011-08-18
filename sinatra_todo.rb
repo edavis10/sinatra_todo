@@ -33,6 +33,14 @@ helpers do
   def edit_link(todo)
     "<a class='edit' href='/edit/#{todo.line_number}'>(edit)</a>"
   end
+
+  # Returns the Epoch time of the most recently modified file
+  def last_modified_file
+    public_files = Dir['public/**'].collect {|f| File.mtime(f)}
+    files = public_files << Todo.last_modified << File.mtime(__FILE__) << File.mtime("views/cache_manifest.erb")
+
+    files.sort.last
+  end
 end
 
 get '/' do
@@ -87,7 +95,10 @@ end
 get '/cache.manifest' do
   content_type 'text/cache-manifest'
   @images = Dir['public/images/**'].collect {|name| name.sub(/^public/,'') }
-
+  last_modified last_modified_file
+  @cache_revision = last_modified_file.to_f
+  etag @cache_revision.to_s
+  cache_control :public, :must_revalidate 
   erb :cache_manifest, :layout => false
 end
 

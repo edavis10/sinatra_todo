@@ -6,6 +6,7 @@ NETWORK:
 /update
 CACHE:
 /style.css
+/app.js
 /
 /all
 <% all_priorities.each do |priority| %>
@@ -17,4 +18,4 @@ CACHE:
 FALLBACK:
 / /offline
 
-# rev 9
+# <%= @cache_revision %>
