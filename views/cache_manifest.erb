@@ -1,0 +1,22 @@
+CACHE MANIFEST
+NETWORK:
+/add
+/tagged/
+/edit/
+/update
+CACHE:
+/
+/all
+<% all_priorities.each do |priority| %>
+/priority/<%= priority %>
+<% end %>
+/jquery-1.6.2.min.js
+/jquery.mobile-1.0b2.min.css
+/jquery.mobile-1.0b2.min.js
+<% @images.each do |image_location| %>
+<%= image_location %>
+<% end %>
+FALLBACK:
+/ /offline
+
+# rev 9
