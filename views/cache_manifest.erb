@@ -4,12 +4,13 @@ NETWORK:
 /tagged/
 /edit/
 /update
+/all
 CACHE:
 /style.css
 /app.js
 /
-/all
 <% all_priorities.each do |priority| %>
+<% next if priority.include?("#") %>
 /priority/<%= priority %>
 <% end %>
 <% @images.each do |image_location| %>
