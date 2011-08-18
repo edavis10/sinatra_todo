@@ -4,10 +4,11 @@ NETWORK:
 /tagged/
 /edit/
 /update
+/all
 CACHE:
 /
-/all
 <% all_priorities.each do |priority| %>
+<% next if priority.include?("#") %>
 /priority/<%= priority %>
 <% end %>
 /jquery-1.6.2.min.js
