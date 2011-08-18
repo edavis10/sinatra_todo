@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-	<title>Todos <%= h(@page_title) %></title> 
+	<title><%= h(@page_title) %></title> 
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
@@ -13,7 +13,7 @@
 <body> 
   <div data-role="page" id="main">
     <div data-role="header">
-      <h1>Todos - <%= h(@page_title) %></h1>
+      <h1><%= h(@page_title) %></h1>
       <a href="/add" data-icon="add" class="ui-btn-right">New</a>
     </div>
 
