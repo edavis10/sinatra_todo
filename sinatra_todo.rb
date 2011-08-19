@@ -8,7 +8,7 @@ TODO_FILE = ENV['TODO_FILE'] || ARGV[0] || './todo'
 # Stupid simple auth
 use Rack::Auth::Basic do |username, password|
   username == 'admin' && password == 'todos'
-end
+end unless ENV['AUTH'] == "off"
 
 helpers do
   include Rack::Utils
