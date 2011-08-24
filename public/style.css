@@ -1,4 +1,5 @@
 #container { width: 100%; }
+nav { text-align: center; }
 #main { width: 100%; }
 .todo-list { list-style: none; padding-left: 0;}
 .todo-item {border: 1px solid #000; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
