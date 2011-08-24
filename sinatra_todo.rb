@@ -19,7 +19,7 @@ helpers do
   end
 
   def link_to_priority(priority)
-    "<a href='/priority/#{priority}'>#{priority}</a>"
+    "<a class='priority' href='/priority/#{priority}'>#{priority}</a>"
   end
 
   def all_tags
@@ -31,7 +31,7 @@ helpers do
   end
 
   def edit_link(todo)
-    "<a class='small' href='/edit/#{todo.line_number}'>(edit)</a>"
+    "<a class='edit' href='/edit/#{todo.line_number}'>(edit)</a>"
   end
 end
 

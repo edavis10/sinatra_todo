@@ -3,9 +3,9 @@
 <% if @todos.empty? %>
 <p>No todos found.</p>
 <% else %>
-<ol>
+<ol class="todo-list">
 <% @todos.each do |todo| %>
-<li>
+<li class="todo-item">
   <%= link_to_priority todo.priority %>
   <%= todo.content %>
   <% todo.tags.each do |tag| %>
