@@ -44,7 +44,8 @@ helpers do
   # Returns the Epoch time of the most recently modified file
   def last_modified_file
     public_files = Dir['public/**'].collect {|f| File.mtime(f)}
-    files = public_files << Todo.last_modified << File.mtime(__FILE__) << File.mtime("views/cache_manifest.erb")
+    view_files = Dir['views/**'].collect {|f| File.mtime(f)}
+    files = public_files + view_files << Todo.last_modified << File.mtime(__FILE__)
 
     files.sort.last
   end
