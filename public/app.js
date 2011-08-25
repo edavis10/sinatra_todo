@@ -17,3 +17,8 @@ window.addEventListener('load', function(e) {
   }, false);
 
 }, false);
+
+function forceReload() {
+  window.applicationCache.swapCache();
+  window.location.reload();
+}
