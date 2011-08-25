@@ -13,6 +13,9 @@ CACHE:
 <% next if priority.include?("#") %>
 /priority/<%= priority %>
 <% end %>
+<% all_tags.each do |tag| %>
+/tagged/<%= tag %>
+<% end %>
 <% @images.each do |image_location| %>
 <%= image_location %>
 <% end %>
