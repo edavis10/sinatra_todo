@@ -22,3 +22,11 @@ function forceReload() {
   window.applicationCache.swapCache();
   window.location.reload();
 }
+
+$(document).ready(function() {
+  if (navigator.onLine) {
+
+  } else {
+    $('a[data-offline=online-only]').hide();
+  }
+});

@@ -38,7 +38,7 @@ helpers do
   end
 
   def edit_link(todo)
-    "<a class='edit' href='/edit/#{todo.line_number}'>(edit)</a>"
+    "<a class='edit' data-offline='online-only' href='/edit/#{todo.line_number}'>(edit)</a>"
   end
 
   # Returns the Epoch time of the most recently modified file
