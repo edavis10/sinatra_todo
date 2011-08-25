@@ -7,7 +7,7 @@
 <% @todos.each do |todo| %>
 <article class="todo-item">
   <%= link_to_priority todo.priority %>
-  <%= todo.content %>
+  <%= auto_link(todo.content) %>
   <% todo.tags.each do |tag| %>
   <%= link_to_tag tag %>
   <% end %>

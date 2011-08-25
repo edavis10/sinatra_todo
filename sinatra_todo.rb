@@ -13,7 +13,14 @@ end unless ENV['AUTH'] == "off"
 helpers do
   include Rack::Utils
   alias_method :h, :escape_html
-  
+
+  # Simple auto_link, not really safe at all...
+  def auto_link(content)
+    content.gsub(/(https?:\/\/\S*)/) do
+      "<a href='#{$1}'>#{$1}</a>"
+    end
+  end
+
   def all_priorities
     Todo.priorities
   end
