@@ -51,6 +51,7 @@ var Todo = (function() {
     takeOverPriorityLinks();
     takeOverActiveTodoLinks();
     takeOverAllTodoLinks();
+    takeOverTagLinks();
     if (navigator.onLine) {
 
     } else {
@@ -68,6 +69,18 @@ var Todo = (function() {
     var filteredTodos = [];
     $.each(items, function(index, todo) {
       if (priorities.indexOf(todo.priority) != -1) {
+        filteredTodos.push(todo);
+      }
+    });
+
+    addTodoItemsToPage(filteredTodos);
+  };
+
+  var filterByTag = function(tag) {
+    clearTodoList();
+    var filteredTodos = [];
+    $.each(items, function(index, todo) {
+      if (todo.tags.indexOf(tag) != -1) {
         filteredTodos.push(todo);
       }
     });
@@ -98,6 +111,14 @@ var Todo = (function() {
     $('a.all').live('click', function (event) {
       clearTodoList();
       addTodoItemsToPage(items);
+      event.preventDefault();
+    });
+  };
+
+  var takeOverTagLinks = function() {
+    $('a.tag').live('click', function (event) {
+      link = $(this);
+      filterByTag(link.data('tag'));
       event.preventDefault();
     });
   };

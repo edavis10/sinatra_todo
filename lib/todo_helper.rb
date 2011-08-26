@@ -10,8 +10,8 @@ module TodoHelper
     "<a class='priority' href='/priority/#{priority}'>#{priority}</a>"
   end
 
-    def link_to_tag(tag)
-    "<a href='/tagged/#{tag}'>##{tag}</a>"
+  def link_to_tag(tag)
+    "<a class='tag' data-tag=#{tag} href='/tagged/#{tag}'>##{tag}</a>"
   end
 
   def edit_link(todo)
