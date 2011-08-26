@@ -38,6 +38,7 @@ var Todo = (function() {
 
   var initializeAfterDomLoaded = function() {
     loadTodos();
+    takeOverPriorityLinks();
     if (navigator.onLine) {
 
     } else {
@@ -46,13 +47,38 @@ var Todo = (function() {
 
   };
 
+  var clearTodoList = function() {
+    $('#todos').html('');
+  };
+
+  var filterByPriority = function(priority) {
+    clearTodoList();
+    var filteredTodos = [];
+    $.each(items, function(index, todo) {
+      if (todo.priority == priority) {
+        filteredTodos.push(todo);
+      }
+    });
+
+    addTodoItemsToPage(filteredTodos);
+  };
+
+  var takeOverPriorityLinks = function() {
+    $('a.priority').live('click', function (event) {
+      link = $(this);
+      var priority = link.attr('href').substr(-1,1);
+      filterByPriority(priority);
+      event.preventDefault();
+    });
+  };
+
   var addTodoItemToPage = function(todoItem) {
     var article = $('<article class="todo-item">').html(todoItem.html_content);
     $('#todos').append(article);
   };
 
-  var addTodoItemsToPage = function() {
-    $.each(items, function(index, todo) {
+  var addTodoItemsToPage = function(todoItems) {
+    $.each(todoItems, function(index, todo) {
       addTodoItemToPage(todo);
     });
   };
@@ -71,12 +97,12 @@ var Todo = (function() {
       $.getJSON('/todos.json', function(body) {
         items = body;
         saveToLocalStorage();
-        addTodoItemsToPage();
+        addTodoItemsToPage(items);
       });
     } else {
       console.log("Offline: load from storage");
       loadFromLocalStorage();
-      addTodoItemsToPage();
+      addTodoItemsToPage(items);
     }
   };
 
