@@ -3,6 +3,7 @@ require 'sinatra'
 require 'json'
 
 require 'lib/todo'
+require 'lib/todo_helper'
 
 TODO_FILE = ENV['TODO_FILE'] || ARGV[0] || './todo'
 
@@ -13,33 +14,15 @@ end unless ENV['AUTH'] == "off"
 
 helpers do
   include Rack::Utils
+  include TodoHelper
   alias_method :h, :escape_html
-
-  # Simple auto_link, not really safe at all...
-  def auto_link(content)
-    content.gsub(/(https?:\/\/\S*)/) do
-      "<a href='#{$1}'>#{$1}</a>"
-    end
-  end
 
   def all_priorities
     Todo.priorities
   end
 
-  def link_to_priority(priority)
-    "<a class='priority' href='/priority/#{priority}'>#{priority}</a>"
-  end
-
   def all_tags
     Todo.tags
-  end
-
-  def link_to_tag(tag)
-    "<a href='/tagged/#{tag}'>##{tag}</a>"
-  end
-
-  def edit_link(todo)
-    "<a class='edit' data-offline='online-only' href='/edit/#{todo.line_number}'>(edit)</a>"
   end
 
   # Returns the Epoch time of the most recently modified file
