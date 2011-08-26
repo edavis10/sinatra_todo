@@ -28,7 +28,7 @@ class Todo
     html = ''
     html += link_to_priority(self.priority) + " "
     html += auto_link(self.content) + " "
-    html += tags.inject('') {|tag_content, tag| tag_content += link_to_tag(tag) } + " "
+    html += tags.inject('') {|tag_content, tag| tag_content += link_to_tag(tag) + " " } + " "
     html += edit_link(self)
     html
   end
