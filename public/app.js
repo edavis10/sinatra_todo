@@ -23,10 +23,21 @@ function forceReload() {
   window.location.reload();
 }
 
-$(document).ready(function() {
-  if (navigator.onLine) {
+Todo = {
+  initialize: function() {
+    $(document).ready(function() {
+      Todo.initializeAfterDomLoaded();
+    });
+  },
 
-  } else {
-    $('a[data-offline=online-only]').hide();
+  initializeAfterDomLoaded: function() {
+    if (navigator.onLine) {
+
+    } else {
+      $('a[data-offline=online-only]').hide();
+    }
+
   }
-});
+}
+
+Todo.initialize()
