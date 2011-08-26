@@ -30,6 +30,16 @@ var Todo = (function() {
     return items;
   };
 
+  var allPriorities = function() {
+    var priorities = [];
+    $.each(items, function(index, todo) {
+      if (priorities.indexOf(todo.priority) == -1) {
+        priorities.push(todo.priority);
+      }
+    });
+    return priorities;
+  };
+
   var initialize = function() {
     $(document).ready(function() {
       initializeAfterDomLoaded();
@@ -39,6 +49,8 @@ var Todo = (function() {
   var initializeAfterDomLoaded = function() {
     loadTodos();
     takeOverPriorityLinks();
+    takeOverActiveTodoLinks();
+    takeOverAllTodoLinks();
     if (navigator.onLine) {
 
     } else {
@@ -51,11 +63,11 @@ var Todo = (function() {
     $('#todos').html('');
   };
 
-  var filterByPriority = function(priority) {
+  var filterByPriority = function(priorities) {
     clearTodoList();
     var filteredTodos = [];
     $.each(items, function(index, todo) {
-      if (todo.priority == priority) {
+      if (priorities.indexOf(todo.priority) != -1) {
         filteredTodos.push(todo);
       }
     });
@@ -67,7 +79,25 @@ var Todo = (function() {
     $('a.priority').live('click', function (event) {
       link = $(this);
       var priority = link.attr('href').substr(-1,1);
-      filterByPriority(priority);
+      filterByPriority([priority]);
+      event.preventDefault();
+    });
+  };
+
+  var takeOverActiveTodoLinks = function() {
+    $('a.active').live('click', function (event) {
+      clearTodoList();
+      var activePriorities = allPriorities().slice(0);
+      activePriorities.splice(activePriorities.indexOf("X"), 1);
+      filterByPriority(activePriorities);
+      event.preventDefault();
+    });
+  };
+
+  var takeOverAllTodoLinks = function() {
+    $('a.all').live('click', function (event) {
+      clearTodoList();
+      addTodoItemsToPage(items);
       event.preventDefault();
     });
   };
