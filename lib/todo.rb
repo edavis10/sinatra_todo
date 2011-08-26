@@ -1,7 +1,10 @@
 require 'tempfile'
 require 'fileutils'
+require 'lib/todo_helper'
 
 class Todo
+  include TodoHelper
+  
   PriorityContentRegex = /^([\S.]) ([^#]*)/
   CompleteProirityRegex = /[0XC]/
 
@@ -14,10 +17,20 @@ class Todo
   def to_json(*a)
     {
       :content => self.content,
+      :html_content => self.html_content,
       :tags => self.tags,
       :line_number => self.line_number,
       :priority => self.priority
     }.to_json(*a)
+  end
+
+  def html_content
+    html = ''
+    html += link_to_priority(self.priority)
+    html += auto_link(self.content)
+    html += tags.inject('') {|tag_content, tag| tag_content += link_to_tag(tag) }
+    html += edit_link(self)
+    html
   end
   
   def active?
