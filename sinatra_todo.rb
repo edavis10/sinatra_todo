@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'json'
 
 require 'lib/todo'
 
@@ -61,6 +62,11 @@ get '/all' do
   @todos = Todo.all
   @page_title = 'Todos - All'
   erb :index
+end
+
+get '/todos.json' do
+  @todos = Todo.all
+  @todos.to_json
 end
 
 get '/priority/:priority' do

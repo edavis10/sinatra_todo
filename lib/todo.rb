@@ -11,6 +11,15 @@ class Todo
   attr_accessor :line_number
   attr_accessor :raw_line
 
+  def to_json(*a)
+    {
+      :content => self.content,
+      :tags => self.tags,
+      :line_number => self.line_number,
+      :priority => self.priority
+    }.to_json(*a)
+  end
+  
   def active?
     self.priority && !self.priority.match(CompleteProirityRegex)
   end
