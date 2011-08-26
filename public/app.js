@@ -34,10 +34,10 @@ var Todo = (function() {
     $(document).ready(function() {
       initializeAfterDomLoaded();
     });
-    loadTodos();
   };
 
   var initializeAfterDomLoaded = function() {
+    loadTodos();
     if (navigator.onLine) {
 
     } else {
@@ -57,11 +57,27 @@ var Todo = (function() {
     });
   };
 
+  var loadFromLocalStorage = function() {
+    items = JSON.parse(localStorage.getItem("todos"));
+  };
+
+  var saveToLocalStorage = function() {
+    localStorage.setItem("todos", JSON.stringify(items));
+  };
+
   var loadTodos = function() {
-    $.getJSON('/todos.json', function(body) {
-      items = body;
+    if (navigator.onLine) {
+      console.log("Online: load from ajax");
+      $.getJSON('/todos.json', function(body) {
+        items = body;
+        saveToLocalStorage();
+        addTodoItemsToPage();
+      });
+    } else {
+      console.log("Offline: load from storage");
+      loadFromLocalStorage();
       addTodoItemsToPage();
-    });
+    }
   };
 
   // Public API
