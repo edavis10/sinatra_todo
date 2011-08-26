@@ -36,7 +36,6 @@ helpers do
 end
 
 get '/' do
-  @todos = Todo.active
   @page_title = "Todos"
   erb :index
 end

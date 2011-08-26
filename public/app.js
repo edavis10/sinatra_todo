@@ -46,9 +46,21 @@ var Todo = (function() {
 
   };
 
+  var addTodoItemToPage = function(todoItem) {
+    var article = $('<article class="todo-item">').html(todoItem.html_content);
+    $('#todos').append(article);
+  };
+
+  var addTodoItemsToPage = function() {
+    $.each(items, function(index, todo) {
+      addTodoItemToPage(todo);
+    });
+  };
+
   var loadTodos = function() {
     $.getJSON('/todos.json', function(body) {
       items = body;
+      addTodoItemsToPage();
     });
   };
 
@@ -56,7 +68,8 @@ var Todo = (function() {
   return {
     getItems: getItems,
     initialize: initialize,
-    loadTodos: loadTodos
+    loadTodos: loadTodos,
+    addTodoItemsToPage: addTodoItemsToPage
   }
 })();
 
