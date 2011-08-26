@@ -17,6 +17,8 @@
         <% all_priorities.each do |priority| %>
           <%= link_to_priority(priority) %>
         <% end %>
+        |
+        <a class="add" href="/add" data-offline="online-only">Add</a>
         <a class="reload" href="#" onclick="forceReload();">Reload</a>
       </nav>
     </header>
