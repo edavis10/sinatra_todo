@@ -23,21 +23,42 @@ function forceReload() {
   window.location.reload();
 }
 
-Todo = {
-  initialize: function() {
-    $(document).ready(function() {
-      Todo.initializeAfterDomLoaded();
-    });
-  },
+var Todo = (function() {
+  var items = [];
 
-  initializeAfterDomLoaded: function() {
+  var getItems = function() {
+    return items;
+  };
+
+  var initialize = function() {
+    $(document).ready(function() {
+      initializeAfterDomLoaded();
+    });
+    loadTodos();
+  };
+
+  var initializeAfterDomLoaded = function() {
     if (navigator.onLine) {
 
     } else {
       $('a[data-offline=online-only]').hide();
     }
 
-  }
-}
+  };
 
-Todo.initialize()
+  var loadTodos = function() {
+    $.getJSON('/todos.json', function(body) {
+      items = body;
+    });
+  };
+
+  // Public API
+  return {
+    getItems: getItems,
+    initialize: initialize,
+    loadTodos: loadTodos
+  }
+})();
+
+Todo.initialize();
+
