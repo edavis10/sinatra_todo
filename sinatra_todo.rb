@@ -29,7 +29,7 @@ helpers do
   def last_modified_file
     public_files = Dir['public/**'].collect {|f| File.mtime(f)}
     view_files = Dir['views/**'].collect {|f| File.mtime(f)}
-    files = public_files + view_files << Todo.last_modified << File.mtime(__FILE__)
+    files = public_files + view_files << File.mtime(__FILE__)
 
     files.sort.last
   end
